@@ -9,7 +9,7 @@ import os
 import time
 import ssl
 
-def imagescrape():
+def initialize():
     try:
         chrome_options = Options()
         chrome_options.add_argument("--no-sandbox")
@@ -17,8 +17,7 @@ def imagescrape():
         driver.maximize_window()
         count=0
         for i in range(1, searchPage + 1):
-        	## The webpage url of your search result
-            url = "https://www.shutterstock.com/search/indian+face?number_of_people=1&mreleased=true&image_type=photo&page=" + str(i)
+            url = your_url + "&page=" + str(i)
             driver.get(url)
             data = driver.execute_script("return document.documentElement.outerHTML")
             print("Page " + str(i))
@@ -41,9 +40,11 @@ def imagescrape():
         print(e)
 
 os.makedirs("images")
-scrape_directory="./images"
+scrape_directory = "./images"
+## Enter your url in this string
+your_url = "https://www.shutterstock.com/search/indian+face?number_of_people=1&mreleased=true&image_type=photo"
 #Number of pages
-searchPage=30
-imagescrape()
+searchPage = 30
+initialize()
 print("Scraping complete.")
 print("Images scraped=", count)
